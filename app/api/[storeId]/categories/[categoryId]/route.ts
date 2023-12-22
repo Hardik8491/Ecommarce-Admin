@@ -20,6 +20,8 @@ export async function GET(
         billboard: true
       }
     });
+
+    console.log(category)
   
     return NextResponse.json(category);
   } catch (error) {

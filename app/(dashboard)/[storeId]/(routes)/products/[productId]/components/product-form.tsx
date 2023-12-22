@@ -33,9 +33,12 @@ import {
 } from "@/components/ui/select";
 import ImageUpload from "@/components/ui/image-upload";
 import { Checkbox } from "@/components/ui/checkbox";
+import { TextArea } from "@/components/ui/text-area";
+
 
 const formSchema = z.object({
   name: z.string().min(1),
+  description:z.string().min(1),
   images: z.object({ url: z.string() }).array(),
   price: z.coerce.number().min(1),
   categoryId: z.string().min(1),
@@ -44,6 +47,8 @@ const formSchema = z.object({
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
 });
+
+console.log(formSchema.description)
 
 type ProductFormValues = z.infer<typeof formSchema>;
 
@@ -82,6 +87,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       }
     : {
         name: "",
+        description:"",
         images: [],
         price: 0,
         categoryId: "",
@@ -90,12 +96,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         isFeatured: false,
         isArchived: false,
       };
+      console.log(initialData);
+      
 
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues,
   });
-
+    
   const onSubmit = async (data: ProductFormValues) => {
     try {
       setLoading(true);
@@ -201,6 +209,23 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             />
             <FormField
               control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <TextArea
+                      disabled={loading}
+                      placeholder="Product description"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="price"
               render={({ field }) => (
                 <FormItem>
@@ -209,7 +234,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="9.99"
+                      placeholder="999"
                       {...field}
                     />
                   </FormControl>

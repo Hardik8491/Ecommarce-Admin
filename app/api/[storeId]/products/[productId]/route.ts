@@ -90,6 +90,7 @@ export async function PATCH(
       isArchived,
     } = body;
 
+
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
     }
@@ -139,7 +140,7 @@ export async function PATCH(
       },
       data: {
         name,
-        price,
+        price: `${price}`,
         categoryId,
         colorId,
         sizeId,
@@ -164,7 +165,7 @@ export async function PATCH(
       },
     });
     console.log(product)
-  
+
     return NextResponse.json(product);
   } catch (error) {
     console.log("[PRODUCT_PATCH]", error);
