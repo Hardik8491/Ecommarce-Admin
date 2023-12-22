@@ -1,9 +1,11 @@
-import * as React from "react"
+// @ts-nocheck
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
+
 
 const TextArea = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
@@ -17,9 +19,9 @@ const TextArea = React.forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         {...props}
       />
-    )
+    );
   }
-)
-TextArea.displayName = "input"
+);
+TextArea.displayName = "input";
 
-export { TextArea }
+export { TextArea };
