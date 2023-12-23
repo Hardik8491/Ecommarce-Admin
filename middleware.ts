@@ -12,6 +12,8 @@ export default authMiddleware({
     "/api/:storeId/size/public/:pid",
     "/api/:storeId/categories/public/:pid",
     "/api/:storeId/billboards/public/:pid",
+    "/api/:storeId/checkout/public",
+    "/api/:storeId/checkout/public/:pid",
   ],
 
   debug: true,
