@@ -16,7 +16,7 @@ export default authMiddleware({
     "/api/:storeId/checkout/public/:pid",
   ],
 
-  debug: true,
+  debug: false,
 });
 
 export const config = {
